@@ -25,6 +25,7 @@ function App() {
   return (
     <>
       <h1 className="heading">HIGH PERFORMANCE PRESSURE GAUGE</h1>
+      <h2 className="subheading">RADOSLAV PETROV RUSEV</h2>
       <div className="pageWrapper">
         <div id={"measuringGaugeContainer"}>
           <div>

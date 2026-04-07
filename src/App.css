@@ -1,9 +1,11 @@
 .heading {
   font-size: 50px;
   font-family: Orbitron;
-  
 }
-
+.subheading{
+  font-size: 30px;
+  font-family: Orbitron;
+}
 #measuringGaugeContainer {
   flex: 1;
   margin-right: 10px;
