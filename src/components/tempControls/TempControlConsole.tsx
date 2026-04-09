@@ -1,10 +1,23 @@
+import type { TempControlConsoleProps } from "../interfaces/TempControlConsoleProps";
 import { TempControlButton } from "./TempControlButton";
+import "../styles/TempControlConsole.css";
 
-export const TempControlConsole = () => {
+export const TempControlConsole = ({
+  temperatureC,
+  setTemperatureC,
+}: TempControlConsoleProps) => {
   return (
     <div id="TempControlConsole">
-      <TempControlButton func="raise" />
-      <TempControlButton func="lower" />
+      <TempControlButton
+        func="raise"
+        temperatureC={temperatureC}
+        setTemperatureC={setTemperatureC}
+      />
+      <TempControlButton
+        func="lower"
+        temperatureC={temperatureC}
+        setTemperatureC={setTemperatureC}
+      />
     </div>
   );
 };

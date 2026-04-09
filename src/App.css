@@ -2,16 +2,21 @@
   font-size: 50px;
   font-family: Orbitron;
 }
-.subheading{
+
+.subheading {
   font-size: 30px;
   font-family: Orbitron;
 }
+
 #measuringGaugeContainer {
-  flex: 1;
-  margin-right: 10px;
-  margin-left: 10px;
-  padding-left: 120px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+.statusLabelContainer {
+  margin-top: 40px;
 }
 
 .pressureLabel {
@@ -19,22 +24,27 @@
   font-family: Orbitron;
 }
 
-.crankButtonContainer {
-  display: flex;
-  align-items: flex-start;
-}
-
 .pageWrapper {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 }
 
-.explosion{
+.explosion {
   position: absolute;
 }
 
-.gaugesContainer{
+.gaugesContainer {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.gaugeGroup {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 20px;
 }

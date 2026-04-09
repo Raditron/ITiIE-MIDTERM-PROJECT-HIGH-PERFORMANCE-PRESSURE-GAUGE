@@ -3,12 +3,15 @@ import "./App.css";
 import { GaugeControlButton } from "./components/GaugeControlButton";
 import PressureGauge from "./components/PressureGauge";
 import TemperatureGauge from "./components/TemperatureGauge";
+import COGauge from "./components/COGauge";
 import explosion from "./assets/explosion.gif";
+import { TempControlConsole } from "./components/tempControls/TempControlConsole";
 function App() {
   const [pressurePSI, setPressurePSI] = useState<number>(0);
   const [temperatureC, setTemperatureC] = useState<number>(0);
+  const [coPPM, setCoPPM] = useState<number>(0);
   const [showExplosion, setShowExplosion] = useState<boolean>(false);
-  
+
   useEffect(() => {
     if (pressurePSI === 60) {
       const showTimeout = setTimeout(() => {
@@ -23,7 +26,7 @@ function App() {
       return () => clearTimeout(showTimeout);
     }
   }, [pressurePSI]);
-  
+
   return (
     <>
       <h1 className="heading">HIGH PERFORMANCE PRESSURE GAUGE</h1>
@@ -31,33 +34,38 @@ function App() {
       <div className="pageWrapper">
         <div id={"measuringGaugeContainer"}>
           <div className="gaugesContainer">
-          <div>
-            <TemperatureGauge temperatureC={temperatureC} />
+            <div className="gaugeGroup">
+              <TemperatureGauge temperatureC={temperatureC} />
+              <TempControlConsole
+                temperatureC={temperatureC}
+                setTemperatureC={setTemperatureC}
+              />
+            </div>
+            <div className="gaugeGroup">
+              <PressureGauge pressurePSI={pressurePSI} />
+              <GaugeControlButton
+                label="Crank"
+                setValue={setPressurePSI}
+                maxValue={60}
+                slowDownStart={30}
+              />
+            </div>
+            <div className="gaugeGroup">
+              <COGauge coPPM={coPPM} />
+              <GaugeControlButton
+                label="CO"
+                setValue={setCoPPM}
+                maxValue={100}
+                slowDownStart={80}
+              />
+            </div>
           </div>
-          <div>
-            <PressureGauge pressurePSI={pressurePSI} />
+          <div className="statusLabelContainer">
+            <label className="pressureLabel">
+              Pressure: {pressurePSI} PSI | Temp: {temperatureC} °C | CO:
+              {coPPM} PPM
+            </label>
           </div>
-          <div>
-            <PressureGauge pressurePSI={pressurePSI} />
-          </div>
-          </div>
-          <label className="pressureLabel">
-            Current Pressure: {pressurePSI} PSI | Temp: {temperatureC} °C
-          </label>
-        </div>
-        <div className="crankButtonContainer" style={{ display: 'flex', gap: '20px' }}>
-          <GaugeControlButton
-            label="Temp"
-            setValue={setTemperatureC}
-            maxValue={40}
-            slowDownStart={30}
-          />
-          <GaugeControlButton
-            label="Crank"
-            setValue={setPressurePSI}
-            maxValue={60}
-            slowDownStart={30}
-          />
         </div>
       </div>
       {showExplosion && (
@@ -72,5 +80,4 @@ function App() {
     </>
   );
 }
-
 export default App;
