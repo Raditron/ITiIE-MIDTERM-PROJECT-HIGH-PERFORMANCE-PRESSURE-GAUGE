@@ -1,31 +1,41 @@
-# Pressure Gauge - Uni Project
+# High-Performance Gauge Cluster - ITiIE Midterm Project
 
-A simple React application that simulates a high-performance pressure gauge with interactive controls.
+A sophisticated React-based dashboard simulating a high-performance industrial monitoring system with real-time interactive gauges.
 
 ## Features
-- **Interactive Gauge:** Real-time visualization of pressure levels.
-- **Crank Control:** Use the crank button to increase/decrease pressure.
-- **Critical Alert:** Visual feedback (explosion effect) when pressure reaches a critical threshold (60 PSI).
+- **Triple-Gauge Dashboard:** Real-time visualization of Pressure (PSI), Temperature (°C), and Carbon Monoxide (PPM).
+- **Interactive Controls:** 
+  - **Dynamic Cranking:** Pressure and CO gauges feature a "crank" mechanism that simulates physical resistance through deceleration logic as they approach maximum values.
+  - **Granular Temp Console:** Precise increment/decrement controls for temperature management.
+- **Safety Alerts:** 
+  - **Visual Thresholds:** Gauges feature color-coded "danger zones" (Red for CO > 35 PPM and Pressure > 50 PSI; Blue for Temp < 18°C).
+  - **Critical Failure Effect:** An interactive explosion sequence triggers when pressure reaches the absolute limit (60 PSI).
 
 ## Tech Stack
-- **Frontend:** React + TypeScript
+- **Frontend:** React 18 + TypeScript
 - **Build Tool:** Vite
-- **Styling:** CSS
+- **Rendering:** HTML5 Canvas API
+- **Styling:** CSS3 (Flexbox architecture)
+- **Icons:** React Icons (Font Awesome 6)
+
+## Component Architecture
+- **`PressureGauge` / `TemperatureGauge` / `COGauge`**: High-fidelity canvas components utilizing custom mathematical projections for ticks, labels, and curved text.
+- **`GaugeControlButton`**: A unified, reusable high-order component managing complex `setInterval` and `useRef` logic for smooth value accumulation and automatic decompression.
+- **`TempControlConsole`**: A modular sub-system for granular state manipulation.
+- **`drawCurvedText` Utility**: A specialized canvas helper for professional-grade circular typography.
+
+## Defense & Engineering Highlights
+- **Canvas API Rendering:** All gauges are procedurally drawn. This includes dynamic needle rotation, responsive notch coloring, and custom arc-based text rendering.
+- **Advanced State Logic:** Implements sophisticated interval management to simulate realistic "momentum" and "drop-off" behaviors when controls are released.
+- **DRY & SOLID Principles:** Recently refactored to abstract duplicate button logic into a single, highly-configurable pure component, significantly reducing technical debt.
+- **Type Safety:** 100% TypeScript coverage for all props and state interfaces, ensuring a robust and scalable architecture.
 
 ## How to Run
-1. Navigate to the `Measuring` directory.
-2. Install dependencies:
+1. Install dependencies:
    ```bash
    npm install
    ```
-3. Start the development server:
+2. Start the development server:
    ```bash
    npm run dev
    ```
-
-## Defense Points
-- **HTML5 Canvas Rendering:** The gauge is dynamically drawn using the Canvas API, including custom text curvature and real-time needle rotation.
-- **Interval-Based Logic:** Implements `setInterval` and `useRef` to handle smooth pressure accumulation and automatic decompression when the crank is released.
-- **State Management:** Uses React's `useState` and `useEffect` for synchronized UI updates and event triggers (e.g., the critical pressure animation).
-- **Component Architecture:** Divided into modular components (`PressureGauge`, `CrankButton`) and utility functions (`drawCurvedText`) for professional code organization.
-- **TypeScript Integration:** Ensures robust type safety for props and state, reducing runtime errors.
