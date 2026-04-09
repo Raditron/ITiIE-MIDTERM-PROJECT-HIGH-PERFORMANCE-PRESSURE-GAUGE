@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { CrankButton } from "./components/CrankButton";
-import { TempButton } from "./components/TempButton";
+import { GaugeControlButton } from "./components/GaugeControlButton";
 import PressureGauge from "./components/PressureGauge";
 import TemperatureGauge from "./components/TemperatureGauge";
 import explosion from "./assets/explosion.gif";
@@ -47,13 +46,17 @@ function App() {
           </label>
         </div>
         <div className="crankButtonContainer" style={{ display: 'flex', gap: '20px' }}>
-          <TempButton
-            temperatureC={temperatureC}
-            setTemperatureC={setTemperatureC}
+          <GaugeControlButton
+            label="Temp"
+            setValue={setTemperatureC}
+            maxValue={40}
+            slowDownStart={30}
           />
-          <CrankButton
-            pressurePSI={pressurePSI}
-            setPressurePSI={setPressurePSI}
+          <GaugeControlButton
+            label="Crank"
+            setValue={setPressurePSI}
+            maxValue={60}
+            slowDownStart={30}
           />
         </div>
       </div>
