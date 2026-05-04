@@ -1,11 +1,15 @@
 .heading {
   font-size: 50px;
   font-family: Orbitron;
+  text-align: center;
+  margin: 20px 0;
 }
 
 .subheading {
   font-size: 30px;
   font-family: Orbitron;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 #measuringGaugeContainer {
@@ -13,14 +17,17 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .statusLabelContainer {
   margin-top: 40px;
+  text-align: center;
 }
 
 .pressureLabel {
-  font-size: larger;
+  font-size: 1.2rem;
   font-family: Orbitron;
 }
 
@@ -31,15 +38,24 @@
 }
 
 .explosion {
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100vw;
+  max-height: 100vh;
+  z-index: 1000;
+  pointer-events: none;
 }
 
 .gaugesContainer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
   gap: 40px;
+  width: 100%;
 }
 
 .gaugeGroup {
@@ -47,4 +63,34 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  flex: 0 1 300px;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto !important;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 32px;
+  }
+  .subheading {
+    font-size: 20px;
+  }
+  .gaugesContainer {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 24px;
+  }
+  .subheading {
+    font-size: 16px;
+  }
+  .pressureLabel {
+    font-size: 1rem;
+  }
 }
